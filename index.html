@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Midterm Exam Hands On</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <script>
+            function order(number){
+                document.getElementById("design").style.width = "40%";
+                document.getElementById("design").style.height = "150px";
+                document.getElementById("design").style.padding = "10px";
+                document.getElementById("design").style.marginTop = "2em";
+                document.getElementById("design").style.border = "1px solid black";
+                document.getElementById("design").style.background = "lightblue";
+                document.getElementById("orderForm").innerHTML= "<h1> Order Form </h1>";
+                
+                switch(number) {
+                    case 1:
+                        document.getElementById("itemName").innerHTML = "Python Book";
+                        break;
+                    case 2:
+                        document.getElementById("itemName").innerHTML = "SQL Book";
+                        break;
+                    case 3:
+                        document.getElementById("itemName").innerHTML = "JavaScript Book";
+                        break;
+                    default:
+                        document.write("No Books Available");
+                }
+
+                document.getElementById("items").innerHTML = "Quantity";
+                document.getElementById("itemNumber").innerHTML = '<input type="number" id="a"></input>';
+
+                if(number == 1) {
+                    document.getElementById("submit").innerHTML = '<input type="button" onclick="multiply(1)" value="Total"></button>';
+                    document.getElementById("amount").innerHTML = "";
+                }
+                else if(number == 2) {
+                    document.getElementById("submit").innerHTML = '<input type="button" onclick="multiply(2)" value="Total"></button>';
+                    document.getElementById("amount").innerHTML = "";
+                }
+                else if(number == 3) {
+                    document.getElementById("submit").innerHTML = '<input type="button" onclick="multiply(3)" value="Total"></button>';
+                    document.getElementById("amount").innerHTML = "";
+                }
+                else{
+                    document.getElementById("amount").innerHTML = "";
+                }
+            }
+            function multiply(choice) {
+
+                const numberFormat = new Intl.NumberFormat('en-US', {
+                    style: 'currency',
+                    currency: 'PHP',
+                });
+
+                var num = document.getElementById("a").value;
+
+                if(num >= 1) {
+                    document.getElementById("tots").innerHTML = "Total Amount: ";
+
+                    if(choice == 1) {
+                        document.getElementById("amount").innerHTML = numberFormat.format(num * 500);
+                    }
+                    else if(choice == 2) {
+                        document.getElementById("amount").innerHTML = numberFormat.format(num * 400);
+                    }
+                    else if(choice == 3) {
+                        document.getElementById("amount").innerHTML = numberFormat.format(num * 600);
+                    } 
+                    else{
+                        document.getElementById("amount").innerHTML = "";
+                    }
+
+                    buttons(choice);
+                }
+                else{
+                    alert("Please. Add a quantity");
+                    reset();
+                }
+            }
+
+            function buttons(number){
+                document.getElementById("cancelBtn").innerHTML = '<input type="reset" onclick="reset()" value="Cancel"></button>';
+                
+                switch(number) {
+                    case 1:
+                        document.getElementById("submitBtn").innerHTML = '<input type="submit" onclick="ordered(1)" value="Order"></button>';
+                        break;
+                    case 2:
+                    document.getElementById("submitBtn").innerHTML = '<input type="submit" onclick="ordered(2)" value="Order"></button>';
+                        break;
+                    case 3:
+                    document.getElementById("submitBtn").innerHTML = '<input type="submit" onclick="ordered(3)" value="Order"></button>';
+                        break;
+                    default:
+                        document.write("Not Available at the moment. Sorry for inconvenience.");
+                }
+                
+            }
+
+            function reset() {
+                document.getElementById("itemNumber").innerHTML = '<input type="number" id="a"></input>';
+                document.getElementById("amount").innerHTML = "";
+            }
+
+            function ordered(holder){
+                switch(holder) {
+                    case 1:
+                        alert("Succesfully ordered" + document.getElementById("a").value + " Python Book");
+                        break;
+                    case 2:
+                    alert("Succesfully ordered " + document.getElementById("a").value + " SQL Book");
+                        break;
+                    case 3:
+                    alert("Succesfully ordered " + document.getElementById("a").value + " JavaScript Book");
+                        break;
+                    default:
+                        alert("Not Available at the moment. Sorry for inconvenience.");
+                        break;
+                }
+                reset();
+            }
+        </script>
+        <header class="header1">
+            <div class="wrapper1">
+                <img src="logo.png" alt="movieLogo">
+                <h1>Welcome to my Book Store</h1>
+            </div>
+
+            <div class="text1">
+                <h1>Russ Book Store</h1>
+                <a href="#top">Shop Now!</a>
+            </div>
+        </header>
+
+        <div class="main-content1">
+            <table id="top">
+				<tr> 
+					<th><img src="pythonBook.png" alt="Python Book"></th>
+					<td>
+                        <h1>Python Book</h1>
+						The book is ideal for absolute beginners, junior developers, and other returning professionals or seasoned experts who need to brush up on their skills. The book requires you to learn by doing real coding exercises and solving difficulties in order to better comprehend the problems. To give you a taste of coding, the author even shows you how to break, fix, and debug your code. 
+                        <h2>Price: 500 php</h2>
+					</td>
+
+					<td class="mainNav">
+						<input type="button" value="Buy Now" onclick="(order(1))" id="txt1"/>
+					</td>
+				</tr>
+				<tr>
+					<th><img src="SQLBook.png" alt="SQL Book"></th>
+					<td>
+                        <h1>SQL Book</h1>
+						SQL Practice problems is useful SQL book. It provides practice problems, which gives you an advanced level of SQL experience by solving sets of targeted problems. These aren’t just into problems designed as syntax examples. The book covers the most common problems you encounter when you deal with data. Moreover, in this book, you will get many real-world practices with actual data. You will learn how to analyze data problems and the right solution for them.
+                        <h2>Price: 400 php</h2>
+					</td>
+					<td class="mainNav">
+						<input type="button" value="Buy Now" onclick="(order(2))" id="txt2"/>
+					</td>
+				</tr>
+				<tr>
+					<th><img src="JSBook.png" alt="Javascript Book"></th>
+					<td>
+                        <h1>JavaScript Book</h1>
+						This book teaches how to write beautiful, effective code. You start by learning the basic structure of the JavaScript language as well as control structures, functions, and data structures. After that, you ‘ll learn about error handling and bug fixing, modularity, and asynchronous programming, and lastly, you will learn how JavaScript is used to program them.
+                        <h2>Price: 600 php</h2>
+					</td>	
+					<td class="mainNav">
+						<input type="button" value="Buy Now" onclick="(order(3))" id="txt3"/>
+					</td>
+				</tr>
+			</table>
+            <br> <br> <br>	
+            <h2 id="orderForm"></h2>
+
+            <div id="design">
+                <h2 id="itemName"></h2>
+                <span id="items"></span>
+                <span id="itemNumber"></span>
+                <p id="submit"></p>
+                <span id="tots"></span>
+                <span id="amount"></span>
+                
+                <p>
+                    <span id="cancelBtn"></span>
+                    <span id="submitBtn"></span>
+                </p>
+            </div>
+        </div>
+    </body>
+</html>
